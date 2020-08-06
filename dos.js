@@ -17,11 +17,13 @@ function mostrar() {
 	let vMin;
 	let vMax;
 	let respuesta;
-	let vNombreLac;
+	let vNombreLac = "Ninguno";
 	let vPrecioLac;
-	let vPrecioLac2;
+	let vPrecioMax;
+	let vArticulo;
 	let vCantidadBedidas = 0;
 	let cont = 0;
+	let con2 = 0;
 	respuesta = "s";
 
 	do {
@@ -35,30 +37,42 @@ function mostrar() {
 			vPrecio = parseInt(prompt("Ingrese precio :"));
 		} while (!(vPrecio > 0 && vPrecio < 1000));
 		respuesta = prompt("desea continuar? s/n")
+		// Averiguar  Nombre de artículo con mayor precio
+		
+			if (con2 == 0) {
+				vPrecioMax = vPrecio;
+				vArticulo = vNombre ;
+			}
+			con2++
+			if (vPrecio > vPrecioMax) {
+				vPrecioMax = vPrecio;
+				vArticulo = vNombre ;
+			}
+		
+		
 
-		if (vCate == "lácteos"){
-		if (cont == 1) {
-			vPrecioLac = vPrecio;
-			vPrecioLac2 = vPrecio;
+		// Averiguar Nombre de artículo con mayor precio, de la categoría lácteos.
+		if (vCate == "lácteos") {
+			if (cont == 0) {
+				vPrecioLac = vPrecio;
+				vNombreLac = vNombre;
+			}
+			cont++
+			if (vPrecio > vPrecioLac) {
+				vPrecioMax = vPrecio;
+				vNombreLac = vNombre ;
+			}
+			
 		}
-		cont++
-		if (vPrecio < vPrecioLac) {
-			vPrecioLac = vPrecio;
-		} else if (vPrecio > vPrecioLac2) {
-			vPrecioLac2 = vPrecio;
-			vNombreLac = vNombre;
-		}
-		}
-
-
+		// Averiguar Cantidad de artículos ingresados de categoría bebidas
 		if (vCate == "bebidas") {
 			vCantidadBedidas++;
 		}
-	}
+	}	while (respuesta == "s");
 
-	while (respuesta == "s");
 	
-	alert ("El Lácteo con mayor precio es " + vNombre +" " + vPrecioLac2);
-	alert ("La cantidad de articulos en bebidas es: " + vCantidadBedidas);
-	
+	alert ("El articulo con mayor precio es: " + vArticulo + " Con un costo de: "+ vPrecioMax);
+	alert("El Lácteo con mayor precio es " + vNombreLac + " con un precio de " + vPrecioLac);
+	alert("La cantidad de articulos en bebidas es: " + vCantidadBedidas);
+
 }
